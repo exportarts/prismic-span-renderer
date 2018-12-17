@@ -1,0 +1,24 @@
+{
+  "name": "@exportarts/prismic-span-renderer",
+  "version": "0.1.1",
+  "description": "Transform prismic.io spans to useable HTML",
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exportarts/prismic-span-renderer.git"
+  },
+  "author": {
+    "name": "Exportarts",
+    "email": "info@exportarts.io",
+    "url": "https://www.exportarts.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exportarts/prismic-span-renderer/issues"
+  },
+  "homepage": "https://github.com/exportarts/prismic-span-renderer#readme"
+}
