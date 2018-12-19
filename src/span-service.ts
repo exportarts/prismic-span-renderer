@@ -13,10 +13,10 @@ export class SpanService {
     spans = spans.sort((a, b) => a.start - b.start);
 
     for (const currentSpan of spans) {
-      text = this.applySpan(currentSpan, text);
+      text = SpanService.applySpan(currentSpan, text);
       const increments = {
-        opening: this.getTagIncrement(currentSpan, TagType.OPENING),
-        both: this.getTagIncrement(currentSpan, TagType.BOTH)
+        opening: SpanService.getTagIncrement(currentSpan, TagType.OPENING),
+        both: SpanService.getTagIncrement(currentSpan, TagType.BOTH)
       };
 
       // Now, shift the following spans by the amount of characters inserted.
@@ -77,8 +77,8 @@ export class SpanService {
     const between = text.substring(span.start, span.end);
     const after = text.substring(span.end);
 
-    const opening = this.getTag(span, TagType.OPENING);
-    const closing = this.getTag(span, TagType.CLOSING);
+    const opening = SpanService.getTag(span, TagType.OPENING);
+    const closing = SpanService.getTag(span, TagType.CLOSING);
 
     return `${before}${opening}${between}${closing}${after}`;
   }
@@ -114,7 +114,7 @@ export class SpanService {
           case SpanType.HYPERLINK: return '</a>';
         }
       case TagType.BOTH:
-        return this.getTag(span, TagType.OPENING) + this.getTag(span, TagType.CLOSING);
+        return SpanService.getTag(span, TagType.OPENING) + SpanService.getTag(span, TagType.CLOSING);
     }
   }
 
@@ -132,7 +132,7 @@ export class SpanService {
    * @param tagType the tag type
    */
   private static getTagIncrement(span: Span, tagType: TagType): number {
-    return this.getTag(span, tagType).length;
+    return SpanService.getTag(span, tagType).length;
   }
 
 }

@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "es2017",
-      "es7",
-      "es6",
-      "dom"
-    ],
+    "module": "es2015",
     "declaration": true,
     "outDir": "dist",
     "esModuleInterop": true

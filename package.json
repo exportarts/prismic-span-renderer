@@ -1,12 +1,11 @@
 {
   "name": "@exportarts/prismic-span-renderer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Transform prismic.io spans to useable HTML",
   "scripts": {
-    "build": "tsc"
+    "build": "ng-packagr",
+    "prepublish": "npm run build"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/exportarts/prismic-span-renderer.git"
@@ -20,5 +19,14 @@
   "bugs": {
     "url": "https://github.com/exportarts/prismic-span-renderer/issues"
   },
-  "homepage": "https://github.com/exportarts/prismic-span-renderer#readme"
+  "homepage": "https://github.com/exportarts/prismic-span-renderer#readme",
+  "devDependencies": {
+    "@angular/compiler": "7.1.4",
+    "@angular/compiler-cli": "7.1.4",
+    "@angular/core": "7.1.4",
+    "ng-packagr": "4.4.5",
+    "tsickle": "0.34.0",
+    "tslib": "1.9.3",
+    "typescript": "3.1.3"
+  }
 }
