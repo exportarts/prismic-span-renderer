@@ -1,7 +1,28 @@
 # Motivation
 
 This library is intended to be used to tranform [prismic.io](https://prismic.io)'s
-text styling attributes (bold, italic, hyperlink) to HTML usable on websites.
+text styling attributes (bold, italic, hyperlink) as well as more complex objects
+(e.g. whole rich-text-sections or images) to HTML usable on websites.
+
+## Vision
+
+This library is build with Prismic's `v2` API in mind and contains several
+common objects found in a typical API-response such as `paragraph` or `image`.
+(See [`src/models/`](https://github.com/exportarts/prismic-span-renderer/tree/master/src/models)
+directory for all available objects.)
+
+The goal is to provide rendering-methods which take these standard objects
+and return HTML. More advanced objects (e.g. custom slices) are currently
+not handled in this project and are maintained in the consuming main projects.
+
+The rendering methods should be as unopinionated as possible and return standard HTML5.
+Custom styling shall either be passed via configuration of the rendering-methods
+or be applied from outside this library via styling of the HTML elements themselves
+(e.g. `p { color: red }`).
+
+The rendering-methods available today can be found in the
+[`src/renderer/`](https://github.com/exportarts/prismic-span-renderer/tree/master/src/renderer)
+directory.
 
 ## About Prismic Spans
 
