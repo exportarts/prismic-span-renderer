@@ -1,6 +1,5 @@
 import { Paragraph } from '../models/paragraph.model';
-import { Image } from '../models/image.model';
-import { applySpans } from './apply-spans';
+import { applySpans } from '../spans/spans';
 
 /**
  * Maps prismics paragraph types to the corresponding
@@ -48,30 +47,4 @@ export function renderText(paragraphs: Paragraph[]): string {
   return htmlPieces.join('')
     .replace(/<\/ul><ul>/g, '') // '<ul>...</ul><ul>...</ul>' --> '<ul>...</ul>'
     .replace(/<\/ol><ol>/g, '');  // '<ol>...</ol><ol>...</ol>' --> '<ol>...</ol>'
-}
-
-export interface ImageConfig {
-  image: Image;
-  caption?: Paragraph[];
-  imgClass?: string;
-}
-
-/**
- * Render an image to HTML.
- * 
- * @param config configuration to render this image
- */
-export function renderImage(config: ImageConfig): string {
-  const imgClass = config.imgClass ? `class="${config.imgClass}"` : '';
-  const img = `<img ${imgClass} src="${config.image.url}">`;
-  if (config.caption) {
-    return `
-      <figure>
-        ${img}
-        <figcaption>${renderText(config.caption)}</figcaption>
-      </figure>
-    `;
-  } else {
-    return img;
-  }
 }
