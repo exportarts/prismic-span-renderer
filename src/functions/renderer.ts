@@ -1,4 +1,4 @@
-import { Paragraph } from '../models/slice-text.model';
+import { Paragraph } from '../models/paragraph.model';
 import { Image } from '../models/image.model';
 import { applySpans } from './apply-spans';
 
