@@ -1,3 +1,8 @@
+/**
+ * A prismic.io styling span is described by
+ * the starting and end point in the target string,
+ * its type and optionally data.
+ */
 export interface Span {
   start: number;
   end: number;
@@ -11,6 +16,9 @@ export enum SpanType {
   STRONG = 'strong'
 }
 
+/**
+ * Data for the {@link SpanType.HYPERLINK} tag type.
+ */
 export interface SpanDataLinkWeb {
   type: 'Link.web';
   value: {
@@ -19,6 +27,19 @@ export interface SpanDataLinkWeb {
   };
 }
 
+/**
+ * Describes the type of a HTML tag.
+ * 
+ * @example
+ * ```html
+ * <!-- This is an opening tag -->
+ * <strong>
+ * <!-- This is a closing tag -->
+ * </strong>
+ * <!-- Both -->
+ * <strong></strong>
+ * ```
+ */
 export enum TagType {
   OPENING,
   CLOSING,
