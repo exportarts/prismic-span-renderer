@@ -20,11 +20,9 @@ export enum SpanType {
  * Data for the {@link SpanType.HYPERLINK} tag type.
  */
 export interface SpanDataLinkWeb {
-  type: 'Link.web';
-  value: {
-    url: string;
-    target?: string;
-  };
+  link_type: 'Web';
+  url: string;
+  target?: string;
 }
 
 /**

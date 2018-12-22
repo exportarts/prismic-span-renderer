@@ -109,11 +109,11 @@ function getTag(span: Span, tagType: TagType): string {
         case SpanType.STRONG:
           return '<strong>';
         case SpanType.HYPERLINK:
-          let target = `target="${span.data.value.target === '_blank' ? '_blank' : '_self'}"`;
-          if (span.data.value.target === '_blank') {
+          let target = `target="${span.data.target === '_blank' ? '_blank' : '_self'}"`;
+          if (span.data.target === '_blank') {
             target += ' rel="noopener"';
           }
-          return `<a href="${span.data.value.url}" ${target}>`;
+          return `<a href="${span.data.url}" ${target}>`;
       }
     case TagType.CLOSING:
       switch (span.type) {
