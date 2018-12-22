@@ -51,19 +51,25 @@ export function renderText(paragraphs: Paragraph[]): string {
     .replace(/<\/ol><ol>/g, '');  // '<ol>...</ol><ol>...</ol>' --> '<ol>...</ol>'
 }
 
+export interface ImageConfig {
+  image: Image;
+  caption?: Paragraph[];
+  imgClass?: string;
+}
+
 /**
  * Render an image to HTML.
  * 
- * @param image image object from prismic
- * @param caption (optional) image caption, can be multiple paragraphs
+ * @param config configuration to render this image
  */
-export function renderImage(image: Image, caption?: Paragraph[]): string {
-  const img = `<img src="${image.url}">`;
-  if (caption) {
+export function renderImage(config: ImageConfig): string {
+  const imgClass = config.imgClass ? `class="${config.imgClass}"` : '';
+  const img = `<img ${imgClass} src="${config.image.url}">`;
+  if (config.caption) {
     return `
       <figure>
         ${img}
-        <figcaption>${renderText(caption)}</figcaption>
+        <figcaption>${renderText(config.caption)}</figcaption>
       </figure>
     `;
   } else {

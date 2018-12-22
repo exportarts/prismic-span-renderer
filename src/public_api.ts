@@ -1,5 +1,5 @@
 export { applySpans } from './functions/apply-spans';
-export { renderText, renderImage } from './functions/renderer';
+export { renderText, renderImage, ImageConfig } from './functions/renderer';
 
 export * from './models/heading-1.model';
 export * from './models/image.model';
