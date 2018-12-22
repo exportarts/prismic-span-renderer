@@ -1,4 +1,5 @@
-import { Span, SpanType, TagType } from '../models/span.model';
+import { Span, TagType } from '../models/span.model';
+import { getTag, getTagIncrement } from './tags';
 
 /**
  * Applies all given spans to the target text.
@@ -77,7 +78,7 @@ export function applySpans(spans: Span[], text: string): string {
  * // returns '<strong>hello</strong>'
  * ```
  */
-function applySpan(span: Span, text: string): string {
+export function applySpan(span: Span, text: string): string {
   const before = text.substring(0, span.start);
   const between = text.substring(span.start, span.end);
   const after = text.substring(span.end);
@@ -86,63 +87,4 @@ function applySpan(span: Span, text: string): string {
   const closing = getTag(span, TagType.CLOSING);
 
   return `${before}${opening}${between}${closing}${after}`;
-}
-
-/**
- * Returns the HTML of the selected tag- and span-type.
- *
- * @param span the span
- * @param tagType the tag type
- *
- * @example
- * ```ts
- * getTag({ ...strong... }, TagType.BOTH);
- * // returns '<strong></strong>'
- * ```
- */
-function getTag(span: Span, tagType: TagType): string {
-  switch (tagType) {
-    case TagType.OPENING:
-      switch (span.type) {
-        case SpanType.EM:
-          return '<em>';
-        case SpanType.STRONG:
-          return '<strong>';
-        case SpanType.HYPERLINK:
-          let target = `target="${span.data.target === '_blank' ? '_blank' : '_self'}"`;
-          if (span.data.target === '_blank') {
-            target += ' rel="noopener"';
-          }
-          return `<a href="${span.data.url}" ${target}>`;
-      }
-    case TagType.CLOSING:
-      switch (span.type) {
-        case SpanType.EM:
-          return '</em>';
-        case SpanType.STRONG:
-          return '</strong>';
-        case SpanType.HYPERLINK:
-          return '</a>';
-      }
-    case TagType.BOTH:
-      return getTag(span, TagType.OPENING) + getTag(span, TagType.CLOSING);
-  }
-}
-
-/**
- * Returns the amount of chars that the
- * application of this span/tag would add
- * to the target string.
- *
- * @param span the span
- * @param tagType the tag type
- *
- * @example
- * ```ts
- * getTagIncrement({ ...strong... }, TagType.OPENING);
- * // returns 8
- * ```
- */
-function getTagIncrement(span: Span, tagType: TagType): number {
-  return getTag(span, tagType).length;
 }

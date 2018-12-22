@@ -1,5 +1,9 @@
 import { Span } from './span.model';
 
+/**
+ * The Prismic API returns an array of paragraphs when using
+ * e.g. the 'Title'- or 'Rich Text'-elements.
+ */
 export interface Paragraph {
   type:
     | 'paragraph'

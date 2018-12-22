@@ -1,7 +1,8 @@
-export { applySpans } from './functions/apply-spans';
-export { renderText, renderImage, ImageConfig } from './functions/renderer';
+export { applySpan, applySpans } from './spans/spans';
 
-export * from './models/heading-1.model';
+export { renderText } from './renderer/text';
+export { renderImage, ImageConfig } from './renderer/image';
+
 export * from './models/image.model';
 export * from './models/paragraph.model';
 export * from './models/span.model';
