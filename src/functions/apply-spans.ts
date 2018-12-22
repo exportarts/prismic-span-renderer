@@ -1,4 +1,4 @@
-import { Span, SpanType, TagType } from './models/span.model';
+import { Span, SpanType, TagType } from '../models/span.model';
 
 /**
  * Applies all given spans to the target text.
