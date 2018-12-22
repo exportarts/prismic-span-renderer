@@ -3,6 +3,20 @@ import { Image } from '../models/image.model';
 import { applySpans } from './apply-spans';
 
 /**
+ * Maps prismics paragraph types to the corresponding
+ * html tag.
+ */
+const htmlTags: Map<string, string> = new Map([
+  ['paragraph', 'p'],
+  ['heading1', 'h1'],
+  ['heading2', 'h2'],
+  ['heading3', 'h3'],
+  ['heading4', 'h4'],
+  ['heading5', 'h5'],
+  ['heading6', 'h6'],
+]);
+
+/**
  * Render a list of paragraphs (e.g. from a Rich Text Section)
  * to HTML.
  * 
@@ -12,38 +26,23 @@ export function renderText(paragraphs: Paragraph[]): string {
   const htmlPieces = [];
 
   for (const paragraph of paragraphs) {
-    switch (paragraph.type) {
-      case 'preformatted':
-        htmlPieces.push(`<pre>${paragraph.text}</pre>`);
-        break;
-      case 'paragraph':
-        htmlPieces.push(`<p>${applySpans(paragraph.spans, paragraph.text)}</p>`);
-        break;
-      case 'heading1':
-        htmlPieces.push(`<h1>${applySpans(paragraph.spans, paragraph.text)}</h1>`);
-        break;
-      case 'heading2':
-        htmlPieces.push(`<h2>${applySpans(paragraph.spans, paragraph.text)}</h2>`);
-        break;
-      case 'heading3':
-        htmlPieces.push(`<h3>${applySpans(paragraph.spans, paragraph.text)}</h3>`);
-        break;
-      case 'heading4':
-        htmlPieces.push(`<h4>${applySpans(paragraph.spans, paragraph.text)}</h4>`);
-        break;
-      case 'heading5':
-        htmlPieces.push(`<h5>${applySpans(paragraph.spans, paragraph.text)}</h5>`);
-        break;
-      case 'heading6':
-        htmlPieces.push(`<h6>${applySpans(paragraph.spans, paragraph.text)}</h6>`);
-        break;
-      case 'list-item':
-        htmlPieces.push(`<ul><li>${applySpans(paragraph.spans, paragraph.text)}</li></ul>`);
-        break;
-      case 'o-list-item':
-        htmlPieces.push(`<ol><li>${applySpans(paragraph.spans, paragraph.text)}</li></ol>`);
-        break;
+    if (paragraph.type === 'preformatted') {
+      htmlPieces.push(`<pre>${paragraph.text}</pre>`);
+      continue;
+    }
+
+    const formatted = applySpans(paragraph.spans, paragraph.text);
+    if (paragraph.type.includes('list-item')) {
+      let listTag = 'ul';
+      if (paragraph.type === 'o-list-item') {
+        listTag = 'ol';
       }
+      htmlPieces.push(`<${listTag}><li>${formatted}</li></${listTag}>`);
+      continue;
+    }
+    
+    const tag = htmlTags.get(paragraph.type);
+    htmlPieces.push(`<${tag}>${formatted}</${tag}>`);
   }
 
   return htmlPieces.join('')
