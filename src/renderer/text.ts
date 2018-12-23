@@ -32,10 +32,7 @@ export function renderText(paragraphs: Paragraph[]): string {
 
     const formatted = applySpans(paragraph.spans, paragraph.text);
     if (paragraph.type.includes('list-item')) {
-      let listTag = 'ul';
-      if (paragraph.type === 'o-list-item') {
-        listTag = 'ol';
-      }
+      const listTag = paragraph.type === 'o-list-item' ? 'ol' : 'ul';
       htmlPieces.push(`<${listTag}><li>${formatted}</li></${listTag}>`);
       continue;
     }
