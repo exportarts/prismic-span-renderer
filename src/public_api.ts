@@ -1,5 +1,3 @@
-export { applySpan, applySpans } from './spans/spans';
-
 export { renderText } from './renderer/text';
 export { renderImage, ImageConfig } from './renderer/image';
 
