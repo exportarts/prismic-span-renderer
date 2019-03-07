@@ -1,4 +1,4 @@
-import { Paragraph } from '../models/paragraph.model';
+import { Paragraph } from '../models/typography.model';
 import { Image } from '../models/image.model';
 import { renderText } from './text';
 

@@ -1,4 +1,4 @@
-import { Paragraph } from '../models/paragraph.model';
+import { Paragraph } from '../models/typography.model';
 import { RichText } from 'prismic-dom/dist/prismic-dom.min.js';
 
 /**

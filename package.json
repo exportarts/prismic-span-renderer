@@ -1,6 +1,6 @@
 {
   "name": "@exportarts/prismic-span-renderer",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Transform prismic.io spans to useable HTML",
   "scripts": {
     "build": "ng-packagr",
