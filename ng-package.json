@@ -4,8 +4,5 @@
         "lib": {
             "entryFile": "public_api.ts"
         }
-    },
-    "whitelistedNonPeerDependencies": [
-        "prismic-dom"
-    ]
+    }
 }
