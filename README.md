@@ -1,3 +1,7 @@
+# THIS PACKAGE IS DEPRECATED
+
+This package has been deprecated in favor of [ngx-prismic](https://github.com/exportarts/ngx-prismic).
+
 # prismic-span-renderer
 
 [![npm](https://img.shields.io/npm/v/@exportarts/prismic-span-renderer.svg?style=flat-square)](https://www.npmjs.com/package/@exportarts/prismic-span-renderer)
